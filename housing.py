@@ -77,3 +77,20 @@ plt.title("Linear Regression using Gradient Descent")
 plt.legend()
 plt.grid(True)
 plt.show()
+
+#normal Equation
+
+X_train_ne = np.c_[np.ones((len(X_train),1)),X_train]
+X_test_ne = np.c_[np.ones((len(X_test),1)),X_test]
+
+theta = np.linalg.inv(X_train_ne.T @ X_train_ne) @ X_train_ne.T @ y_train
+
+y_pred_ne = X_test_ne @ theta
+
+print("Normal Equation")
+print("---------------")
+print("---------------")
+print("Intercept :", theta[0])
+print("slope : " , theta[1])
+print("MSE :", mean_squared_error(y_test, y_pred_ne))
+print("r2 Score : ", r2_score(y_test,y_pred_ne))
